@@ -8,6 +8,7 @@
 *.jar
 *.war
 *.ear
+*.class
 
 ### STS ###
 **/*.apt_generated
@@ -22,7 +23,7 @@
 **/.project
 **/.classpath
 **/.settings/
-**/blog/bin/
+**/bin
 **/.tern-project
 
 ### IntelliJ IDEA ###
