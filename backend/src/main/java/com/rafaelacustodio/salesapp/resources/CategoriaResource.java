@@ -1,8 +1,6 @@
 package com.rafaelacustodio.salesapp.resources;
 import com.rafaelacustodio.salesapp.domain.Categoria;
 
-import java.util.ArrayList;
-import java.util.List;
 
 import com.rafaelacustodio.salesapp.services.CategoriaService;
 import org.springframework.beans.factory.annotation.Autowired;

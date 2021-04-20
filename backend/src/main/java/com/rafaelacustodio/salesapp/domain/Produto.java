@@ -1,6 +1,9 @@
 package com.rafaelacustodio.salesapp.domain;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +18,8 @@ public class Produto implements Serializable {
     private String nome;
     private Double preco;
 
+    
+    @JsonBackReference
     @ManyToMany
     @JoinTable(name = "PRODUTO_CATEGORIA",
             joinColumns = @JoinColumn(name = "produto_id"),
