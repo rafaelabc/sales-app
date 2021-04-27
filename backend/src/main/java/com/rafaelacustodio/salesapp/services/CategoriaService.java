@@ -1,12 +1,15 @@
 package com.rafaelacustodio.salesapp.services;
 
-import com.rafaelacustodio.salesapp.domain.Categoria;
-import com.rafaelacustodio.salesapp.exceptions.ObjectNotFoundException;
-import com.rafaelacustodio.salesapp.repositories.CategoriaRepository;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+import com.rafaelacustodio.salesapp.domain.Categoria;
+import com.rafaelacustodio.salesapp.repositories.CategoriaRepository;
+import com.rafaelacustodio.salesapp.services.exceptions.DataIntegrityException;
+import com.rafaelacustodio.salesapp.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class CategoriaService {
@@ -28,5 +31,14 @@ public class CategoriaService {
     public Categoria update (Categoria obj) {
     	find(obj.getId());
     	return repository.save(obj);
+    }
+    
+    public void delete(Integer id) {
+    	find(id);
+    	try {
+    		repository.deleteById(id);
+    	}catch(DataIntegrityViolationException e) {
+    		throw new DataIntegrityException("Não é possível excluir uma categoria que possui produtos");
+    	}
     }
 }

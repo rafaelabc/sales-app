@@ -1,8 +1,8 @@
 package com.rafaelacustodio.salesapp.services;
 
 import com.rafaelacustodio.salesapp.domain.Pedido;
-import com.rafaelacustodio.salesapp.exceptions.ObjectNotFoundException;
 import com.rafaelacustodio.salesapp.repositories.PedidoRepository;
+import com.rafaelacustodio.salesapp.services.exceptions.ObjectNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

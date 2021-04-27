@@ -1,4 +1,4 @@
-package com.rafaelacustodio.salesapp.exceptions;
+package com.rafaelacustodio.salesapp.services.exceptions;
 
 public class ObjectNotFoundException extends RuntimeException{
 
