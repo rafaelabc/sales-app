@@ -11,6 +11,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.rafaelacustodio.salesapp.domain.Categoria;
+import com.rafaelacustodio.salesapp.dto.CategoriaDTO;
 import com.rafaelacustodio.salesapp.repositories.CategoriaRepository;
 import com.rafaelacustodio.salesapp.services.exceptions.DataIntegrityException;
 import com.rafaelacustodio.salesapp.services.exceptions.ObjectNotFoundException;
@@ -53,5 +54,9 @@ public class CategoriaService {
     	PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction),orderBy);
 
     	return repository.findAll(pageRequest);
+    }
+    
+    public Categoria fromDTO(CategoriaDTO objDto) {
+    	return new Categoria(objDto.getId(), objDto.getNome());
     }
 }
