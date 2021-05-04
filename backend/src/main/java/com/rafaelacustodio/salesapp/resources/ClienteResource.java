@@ -1,8 +1,5 @@
 package com.rafaelacustodio.salesapp.resources;
-import com.rafaelacustodio.salesapp.domain.Cliente;
-import com.rafaelacustodio.salesapp.dto.ClienteDTO;
-import com.rafaelacustodio.salesapp.services.ClienteService;
-
+import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,6 +14,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import com.rafaelacustodio.salesapp.domain.Cliente;
+import com.rafaelacustodio.salesapp.dto.ClienteDTO;
+import com.rafaelacustodio.salesapp.dto.ClienteNewDTO;
+import com.rafaelacustodio.salesapp.services.ClienteService;
 
 @RestController
 @RequestMapping(value="/clientes")
@@ -29,6 +32,16 @@ public class ClienteResource {
 	public ResponseEntity<Cliente> find(@PathVariable Integer id) {
 		Cliente obj = service.find(id);
 		return  ResponseEntity.ok().body(obj);
+	}
+	
+	@RequestMapping(method=RequestMethod.POST)
+	public ResponseEntity<Void> insert(@Valid @RequestBody ClienteNewDTO objDto){
+		Cliente obj = service.fromDTO(objDto);
+		obj = service.insert(obj);
+		//retonar uri do obj criado - boa pratica do padrao hhtp
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
+				.path("/{id}").buildAndExpand(obj.getId()).toUri();
+		return ResponseEntity.created(uri).build();
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
