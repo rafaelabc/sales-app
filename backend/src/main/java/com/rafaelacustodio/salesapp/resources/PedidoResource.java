@@ -1,7 +1,5 @@
 package com.rafaelacustodio.salesapp.resources;
 import com.rafaelacustodio.salesapp.domain.Pedido;
-import com.rafaelacustodio.salesapp.domain.Pedido;
-import com.rafaelacustodio.salesapp.dto.PedidoDTO;
 import com.rafaelacustodio.salesapp.services.PedidoService;
 
 import java.net.URI;
