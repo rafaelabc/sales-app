@@ -1,47 +1,46 @@
-**/HELP.md
-**/target/
-!.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
+*.java.hsp
+*.sonarj
+*.sw*
+.DS_Store
+.settings
+.springBeans
+bin
+build.sh
+integration-repo
+ivy-cache
+jxl.log
+jmx.log
+derby.log
+spring-test/test-output/
+.gradle
+argfile*
+pom.xml
+activemq-data/
 
-# Package Files #
-*.jar
-*.war
-*.ear
-*.class
+classes/
+/build
+buildSrc/build
+/spring-*/build
+/spring-core/kotlin-coroutines/build
+/framework-bom/build
+/integration-tests/build
+/src/asciidoc/build
+target/
 
-### STS ###
-**/*.apt_generated
-**/*.classpath
-**/*.factorypath
-**/*.project
-**/*.settings
-**/*.springBeans
-**/*.sts4-cache
+# Eclipse artifacts, including WTP generated manifests
+.classpath
+.project
+spring-*/src/main/java/META-INF/MANIFEST.MF
 
-### Eclipse files
-**/.project
-**/.classpath
-**/.settings/
-**/bin
-**/.tern-project
+# IDEA artifacts and output dirs
+*.iml
+*.ipr
+*.iws
+.idea
+out
+test-output
+atlassian-ide-plugin.xml
+.gradletasknamecache
 
-### IntelliJ IDEA ###
-**/*.idea
-**/*.iml
-**/*.iws
-**/*.ipr
-**/*.gradle
-
-### NetBeans ###
-**/nbproject/private/
-**/nbbuild/
-**/dist/
-**/nbdist/
-**/.nb-gradle/
-**/build/
-!**/src/main/**/build/
-!**/src/test/**/build/
-
-### VS Code ###
-**/.vscode/
+# VS Code
+.vscode/
