@@ -14,13 +14,14 @@ public abstract class AbstractEmailService implements EmailService{
 	
 	@Override
 	public void sendOrderConfirmationEmail(Pedido obj) {
-		SimpleMailMessage sm = prepareSimplemailMessageFromPedido(obj);
+		SimpleMailMessage sm = prepareSimpleMailMessageFromPedido(obj);
 		sendEmail(sm);
 	}
 
-	protected  SimpleMailMessage prepareSimplemailMessageFromPedido(Pedido obj) {
+	protected SimpleMailMessage prepareSimpleMailMessageFromPedido(Pedido obj) {
 		SimpleMailMessage sm = new SimpleMailMessage();
 		sm.setTo(obj.getCliente().getEmail());
+		sm.setFrom(sender);
 		sm.setSubject("Pedido confirmado! Código: " + obj.getId());
 		sm.setSentDate(new Date(System.currentTimeMillis()));
 		sm.setText(obj.toString());
