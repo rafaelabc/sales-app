@@ -15,11 +15,14 @@ import org.springframework.transaction.annotation.Transactional;
 import com.rafaelacustodio.salesapp.domain.Cidade;
 import com.rafaelacustodio.salesapp.domain.Cliente;
 import com.rafaelacustodio.salesapp.domain.Endereco;
+import com.rafaelacustodio.salesapp.domain.enums.Perfil;
 import com.rafaelacustodio.salesapp.domain.enums.TipoCliente;
 import com.rafaelacustodio.salesapp.dto.ClienteDTO;
 import com.rafaelacustodio.salesapp.dto.ClienteNewDTO;
 import com.rafaelacustodio.salesapp.repositories.ClienteRepository;
 import com.rafaelacustodio.salesapp.repositories.EnderecoRepository;
+import com.rafaelacustodio.salesapp.security.UserSS;
+import com.rafaelacustodio.salesapp.services.exceptions.AuthorizationException;
 import com.rafaelacustodio.salesapp.services.exceptions.DataIntegrityException;
 import com.rafaelacustodio.salesapp.services.exceptions.ObjectNotFoundException;
 
@@ -36,6 +39,12 @@ public class ClienteService {
     private BCryptPasswordEncoder pe;
 
     public Cliente find(Integer id){
+    	UserSS user = UserService.authenticated();
+    	if(user == null || !user.hasRole(Perfil.ADMIN) && !id.equals(user.getId())) {
+    		throw new AuthorizationException("Acesso negado");
+    	}
+    	
+    	
     	Optional<Cliente> obj = repository.findById(id);
     	return obj.orElseThrow(() -> new ObjectNotFoundException(
     	 "Objeto não encontrado! Id: " + id + ", Tipo: " + Cliente.class.getName()));
