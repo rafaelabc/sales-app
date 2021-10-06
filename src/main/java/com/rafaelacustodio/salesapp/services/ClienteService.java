@@ -57,9 +57,13 @@ public class ClienteService {
     	return obj;
     }
     public Cliente update (Cliente obj) {
+    	UserSS user = UserService.authenticated();
+    	if(user == null || !user.hasRole(Perfil.ADMIN) && !obj.getId().equals(user.getId())) {
+    		throw new AuthorizationException("Acesso negado");
+    	}
     	Cliente newObj = find(obj.getId());
     	updateData(newObj, obj);
-    	return repository.save(obj);
+    	return repository.save(newObj);
     }
     
     public void delete(Integer id) {
