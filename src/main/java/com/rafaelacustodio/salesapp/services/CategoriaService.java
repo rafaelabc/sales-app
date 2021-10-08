@@ -11,11 +11,8 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.rafaelacustodio.salesapp.domain.Categoria;
-import com.rafaelacustodio.salesapp.domain.enums.Perfil;
 import com.rafaelacustodio.salesapp.dto.CategoriaDTO;
 import com.rafaelacustodio.salesapp.repositories.CategoriaRepository;
-import com.rafaelacustodio.salesapp.security.UserSS;
-import com.rafaelacustodio.salesapp.services.exceptions.AuthorizationException;
 import com.rafaelacustodio.salesapp.services.exceptions.DataIntegrityException;
 import com.rafaelacustodio.salesapp.services.exceptions.ObjectNotFoundException;
 
