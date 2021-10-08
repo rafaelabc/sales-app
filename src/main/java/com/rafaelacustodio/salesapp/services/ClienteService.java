@@ -101,7 +101,16 @@ public class ClienteService {
 	}
 
 	public URI uploadProfilePicture(MultipartFile multipartFile) {
-		return s3Service.uploadFile(multipartFile);
+		UserSS user = UserService.authenticated();
+		if (user == null) {
+			throw new AuthorizationException("Acesso negado");
+		}
+		
+		URI uri = s3Service.uploadFile(multipartFile);
+		Optional<Cliente> cliente = repository.findById(user.getId());
+		cliente.get().setImageUrl(uri.toString());
+		repository.save(cliente.get());
+		return uri;
 	}
 
 	public Cliente fromDTO(ClienteNewDTO objDto) {
